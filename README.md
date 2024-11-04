@@ -49,3 +49,33 @@ Esta API tiene un solo endpoint, /api/v1/hello, que devuelve un mensaje JSON de 
 A este script de Python lo llamamos app.py  
   
   Ahora debemos crear un Dockerfile, para empaquetar la API en una imagen de Docker. En Visual Studio solamente creamos un nuevo archivo y de nombre Dockerfile y listo. Dentro de este archivo agregamos los siguientes ajustes:
+```Dockerfile
+# Usa una imagen base de Python con la versión 3.9
+FROM python:3.9
+
+# Establece el directorio de trabajo en el contenedor
+WORKDIR /app
+
+# Copia el archivo de requerimientos (para instalar dependencias)
+COPY requirements.txt /app
+
+# Instala las dependencias usando pip
+RUN pip install -r requirements.txt
+
+# Copia el código fuente al contenedor
+COPY app.py /app
+
+# Expone el puerto 5000 (puerto en el que Flask ejecutará la API)
+EXPOSE 5000
+
+# Comando para correr la aplicación
+CMD ["python", "app.py"]
+```
+
+Este Dockerfile realiza los siguientes pasos:  
+1. Usa una imagen base de Python.
+2.	Establece un directorio de trabajo (/app).
+3.	Copia e instala los paquetes necesarios.
+4.	Copia el archivo app.py.
+5.	Expone el puerto 5000 para que la API sea accesible.
+6.	Ejecuta la aplicación Flask.
