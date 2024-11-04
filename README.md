@@ -126,5 +126,35 @@ Lo siguiente es crear los archivos de configuración de Kubernetes, los cuales d
 1. api-deployment.yaml
 
 Este archivo define un Deployment, que controla el ciclo de vida de los contenedores de la API, así como el número de réplicas que deseas ejecutar.
-Crea un archivo llamado api-deployment.yaml con el siguiente contenido:
+  
+  Crea un archivo llamado api-deployment.yaml con el siguiente contenido:
+  ```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-api-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flask-api
+  template:
+    metadata:
+      labels:
+        app: flask-api
+    spec:
+      containers:
+      - name: flask-api
+        image: louisev/flask-api:v2
+        ports:
+        - containerPort: 5000
+
+```
+
+2. api-service.yaml
+
+  Este archivo define un Service, que expone el Deployment y permite el acceso desde fuera del clúster (utilizando el tipo LoadBalancer).
+  
+  Crea un archivo llamado api-service.yaml con el siguiente contenido:
+
 
