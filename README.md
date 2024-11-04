@@ -14,3 +14,8 @@ Primero una ves teniendo Docker Desktop, el programa cuenta con una opción para
 activar Kubernetes en esta misma para poder utilizar sus comandos.
 
 ![Tutorial](images/1.png)
+
+En ajustes podemos encontrar la opción de activar Kubernetes y así un clúster,
+después aplicamos y reiniciamos.
+Ahora instalamos la biblioteca de Flask en Python la cual nos permitira crear la
+aplicación.
