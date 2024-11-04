@@ -79,3 +79,8 @@ Este Dockerfile realiza los siguientes pasos:
 4.	Copia el archivo app.py.
 5.	Expone el puerto 5000 para que la API sea accesible.
 6.	Ejecuta la aplicación Flask.
+
+Y ahora debemos crear un archivo de texto con el nombre requirements.txt para instalar Flask.
+Flask==3.0.3
+
+
