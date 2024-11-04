@@ -122,4 +122,8 @@ docker push <tu-usuario-de-docker-hub>/flask-api:latest
 ```
 
 ## Configuración de Kubernetes
-Lo siguiente es crear los archivos de configuración de Kubernetes, los cuales deben estar en la misma carpeta donde esta el código API, a estos archivos los llamaremos api-deployment.yaml y api-service.yaml estos archivos le dirán a Kubernetes cómo desplegar el API.
+Lo siguiente es crear los archivos de configuración de Kubernetes, los cuales deben estar en la misma carpeta donde esta el código API, a estos archivos los llamaremos api-deployment.yaml y api-service.yaml estos archivos le dirán a Kubernetes cómo desplegar el API.  
+1. api-deployment.yaml
+   Este archivo define un Deployment, que controla el ciclo de vida de los contenedores de la API, así como el número de réplicas que deseas ejecutar.
+Crea un archivo llamado api-deployment.yaml con el siguiente contenido:
+
