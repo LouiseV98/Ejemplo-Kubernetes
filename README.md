@@ -26,3 +26,19 @@ Una vez teniendo un entorno virtual podemos ejecutar el siguiente comando para i
 ```bash
 pip install Flask
 ```
+
+Ya instalado, para aplicar los cambios, reiniciamos Visual Studio cerrándolo y volviéndolo a abrir.
+Entonces ahora si comenzaremos a crear la aplicación:
+```python
+from flask import Flask, jsonify
+
+app = Flask(__name__)
+
+@app.route('/api/v1/hello', methods=['GET'])
+def hello():
+    return jsonify(message="Hello, World!")
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5000)
+
+```
