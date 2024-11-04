@@ -84,7 +84,6 @@ Este Dockerfile realiza los siguientes pasos:
 
 ## Crear requirements
 Y ahora debemos crear un archivo de texto con el nombre requirements.txt para instalar Flask.
-Flask==3.0.3
 ```txt
 Flask==3.0.3
 ```
