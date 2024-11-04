@@ -93,3 +93,11 @@ Y esto es lo único que contendrá.
 Comprobaremos los archivos que hay en nuestra carpeta, todo debe estar en la misma. Podemos ejecutar el comando dir para ver que elementos contiene la carpeta actual.
 
 ![Tutorial2](images/2.png)
+
+Debemos tener los 3 archivos: app.py, Dockerfile y requirements.txt
+
+## Construir la imagen Docker y probarla
+Construiremos ahora la imagen Docker y la probaremos, debemos ejecutar el siguiente comando:
+```bash
+docker build -t flask-api:latest .
+```
