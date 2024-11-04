@@ -19,3 +19,10 @@ En ajustes podemos encontrar la opción de activar Kubernetes y así un clúster
 después aplicamos y reiniciamos.
 Ahora instalamos la biblioteca de Flask en Python la cual nos permitira crear la
 aplicación.
+
+### Nota: Es recomendable utilizar un entorno virtual en Python
+
+Una vez teniendo un entorno virtual podemos ejecutar el siguiente comando para instalar las dependencias de Flask:
+```bash
+pip install Flask
+```
