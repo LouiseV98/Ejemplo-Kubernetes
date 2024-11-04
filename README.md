@@ -156,5 +156,20 @@ spec:
   Este archivo define un Service, que expone el Deployment y permite el acceso desde fuera del clúster (utilizando el tipo LoadBalancer).
   
   Crea un archivo llamado api-service.yaml con el siguiente contenido:
+  ```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-api-service
+spec:
+  selector:
+    app: flask-api
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: LoadBalancer
+
+```
 
 
