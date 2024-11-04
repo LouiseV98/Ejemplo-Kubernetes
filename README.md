@@ -91,4 +91,5 @@ Flask==3.0.3
 Y esto es lo único que contendrá.
 
 Comprobaremos los archivos que hay en nuestra carpeta, todo debe estar en la misma. Podemos ejecutar el comando dir para ver que elementos contiene la carpeta actual.
+
 ![Tutorial2](images/2.png)
