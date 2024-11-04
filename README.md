@@ -96,8 +96,30 @@ Comprobaremos los archivos que hay en nuestra carpeta, todo debe estar en la mis
 
 Debemos tener los 3 archivos: app.py, Dockerfile y requirements.txt
 
-## Construir la imagen Docker y probarla
+## Construir la imagen Docker
 Construiremos ahora la imagen Docker y la probaremos, debemos ejecutar el siguiente comando:
 ```bash
 docker build -t flask-api:latest .
 ```
+
+Despues de algunos minutos veremos que se creó correctamente:
+
+![Tutorial3](images/3.png)
+
+Para este caso, tuve que crear una cuenta en el sitio web de Docker Hub la cual nos permite subir la imagen de Docker que vamos a crear. Ya que tengamos abierta la sesión en un navegador, en la terminal ejecutamos el comando:
+```bash
+docker login
+```
+
+Creamos el tag del repositorio el cual debe ser el mismo nombre cuando estemos por crear la imagen Docker:
+```bash
+docker tag flask-api:latest <tu-usuario-de-docker-hub>/flask-api:latest
+```
+
+Y ahora subimos la imagen a Docker Hub con el siguiente comando:
+```bash
+docker push <tu-usuario-de-docker-hub>/flask-api:latest
+```
+
+## Configuración de Kubernetes
+Lo siguiente es crear los archivos de configuración de Kubernetes, los cuales deben estar en la misma carpeta donde esta el código API, a estos archivos los llamaremos api-deployment.yaml y api-service.yaml estos archivos le dirán a Kubernetes cómo desplegar el API.
