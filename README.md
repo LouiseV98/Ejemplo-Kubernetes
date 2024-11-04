@@ -172,4 +172,61 @@ spec:
 
 ```
 
+### Nota: antes de continuar debemos saber el Port por el cual esta escuhando la imagen Docker, primero debemos ejecutar el siguiente comando para que la imagen comienze a transmitir por el puerto que asignamos en la aplicación.
+```bash
+docker run -p 5000:5000 flask-api:latest
+```
 
+Ejecutamos el siguiente comando para saber el puerto:
+```bash
+kubectl get services
+```
+
+Lo cual nos dará los puertos:
+
+![Tutorial4](images/4.png)
+
+Aquí nos interesa el puerto del servicio con el nombre que le pusimos a nuestra imagen Docker, en este caso es el puerto 80:30537.  
+Regresando al archivo api-service.yaml, editamos el contenido cambiando el tipo de cluster de LoadBalancer a NodePort y colocando el numero de puerto que nos arrojo el comando ingresado anteriormente:
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-api-service
+spec:
+  selector:
+    app: flask-api
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+      nodePort: 30537
+  type: NodePort
+
+```
+
+En la terminal, asegúrate de estar en el mismo directorio que contiene api-deployment.yaml y api-service.yaml. Luego, ejecuta los siguientes comandos para aplicar los archivos de configuración en Kubernetes:
+```bash
+kubectl apply -f api-deployment.yaml
+```
+
+```bash
+kubectl apply -f api-service.yaml
+```
+
+Estos comandos crearán tanto el Deployment como el Service en Kubernetes.  
+Para asegurarte de que el Deployment y el Service se hayan creado correctamente, puedes usar los siguientes comandos:
+```bash
+kubectl get deployments
+```
+
+```bash
+kubectl get pods
+```
+
+Esto nos da la información de los archivos deployment y service y nos indica si estos están funcionando correctamente, si vemos los pods con el estatus Running entonces están funcionando como deben.
+
+![Tutorial5](images/5.png)
+
+### Pruebas
+Solo nos queda verificar si la API y los servicios están funcionando, podemos ejecutar el siguiente comando:
