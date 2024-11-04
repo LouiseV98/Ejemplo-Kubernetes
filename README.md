@@ -20,6 +20,7 @@ después aplicamos y reiniciamos.
 Ahora instalamos la biblioteca de Flask en Python la cual nos permitira crear la
 aplicación.
 
+## Creación de API
 ### Nota: Es recomendable utilizar un entorno virtual en Python
 
 Una vez teniendo un entorno virtual podemos ejecutar el siguiente comando para instalar las dependencias de Flask:
@@ -47,7 +48,8 @@ Esta API tiene un solo endpoint, /api/v1/hello, que devuelve un mensaje JSON de 
   
   Está colocando en el puerto 5000 y el host como 0.0.0.0 ya que significa que la aplicación está escuchando en todas las interfaces de red del contenedor, lo que permite que Kubernetes pueda redirigir tráfico desde el puerto del nodo a este puerto del contenedor.
 A este script de Python lo llamamos app.py  
-  
+
+  ## Crear Dockerfile
   Ahora debemos crear un Dockerfile, para empaquetar la API en una imagen de Docker. En Visual Studio solamente creamos un nuevo archivo y de nombre Dockerfile y listo. Dentro de este archivo agregamos los siguientes ajustes:
 ```Dockerfile
 # Usa una imagen base de Python con la versión 3.9
