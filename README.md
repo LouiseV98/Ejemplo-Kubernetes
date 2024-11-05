@@ -228,5 +228,86 @@ Esto nos da la información de los archivos deployment y service y nos indica si
 
 ![Tutorial5](images/5.png)
 
-### Pruebas
+## Pruebas
 Solo nos queda verificar si la API y los servicios están funcionando, podemos ejecutar el siguiente comando:
+```bash
+curl http://localhost:30537/api/v1/hello
+```
+
+O usando el navegador ingresamos el siguiente enlace:
+```bash
+http://localhost:30537/api/v1/hello
+```
+
+En la terminal podemos ver esto: 
+
+![Tutorial6](images/6.png)
+
+O en el navegador esto:
+
+![Tutorial7](images/7.png)
+
+En Docker Desktop podemos detener los contenedores siempre que queramos así como monitorear su estado:
+
+![Tutorial8](images/8.png)
+
+Y así podemos tener una API sencilla utilizando Docker y Kubernetes.
+
+## Modificar API
+En el caso de que queramos modificar el código un poco, debemos hacerlo en el código fuente de la app, crear una etiqueta diferente para la imagen y volverla a subir. Para esto hacemos lo siguiente:
+```python
+from flask import Flask, jsonify
+
+app = Flask(__name__)
+
+@app.route('/api/v1/hello', methods=['GET'])
+def hello():
+    return jsonify(message="Hello, Worlddddddd!")
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=5000)
+
+```
+
+Aquí solamente modifiqué el mensaje que muestra el JSON. Guardamos el archivo.  
+Asigna una nueva etiqueta con un número de versión cada vez que actualices la imagen (por ejemplo, flask-api:v2 en lugar de latest). Esto asegura que Kubernetes descargue la nueva imagen.
+```bash
+docker build -t flask-api:v2
+```
+
+Luego, para Docker Hub:
+```bash
+docker tag flask-api:v2 <tu-usuario-de-docker-hub>/flask-api:v2
+```
+
+```bash
+docker push <tu-usuario-de-docker-hub>/flask-api:v2
+```
+
+Actualizamos api-deployment.yaml para que apunte a esta nueva etiqueta:
+```yaml
+containers:
+      - name: flask-api
+        image: louisev/flask-api:v2
+        ports:
+        - containerPort: 5000
+
+```
+
+Aplicamos el despliegue con el archivo actualizado:
+```bash
+kubectl apply -f api-deployment.yaml
+```
+
+Y ya deberíamos poder ver la modificación en el navegador o en la terminal:
+
+![Tutorial9](images/9.png)
+
+O en el navegador:
+
+![Tutorial10](images/10.png)
+
+En el sitio web de Docker Hub podemos ver el repositorio que hemos creado:
+
+![Tutorial11](images/11.png)
+
